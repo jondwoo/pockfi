@@ -7,6 +7,7 @@ import type { AppType } from 'next/dist/shared/lib/utils';
 import { SessionProvider } from 'next-auth/react';
 import superjson from 'superjson';
 
+import Layout from '../../components/layout';
 import type { AppRouter } from '../server/router';
 import { theme } from '../styles/theme';
 
@@ -17,7 +18,9 @@ const MyApp: AppType = ({
   return (
     <ChakraProvider theme={theme}>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </SessionProvider>
     </ChakraProvider>
   );
