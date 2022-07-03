@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Expense Splitter</title>
+        <title>Money Splitter</title>
         <meta name="description" content="App to split expenses" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
