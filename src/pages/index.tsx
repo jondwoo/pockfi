@@ -8,7 +8,6 @@ const Home: NextPage = () => {
     'example.hello',
     { text: 'from tRPC' },
   ]);
-
   console.log(isLoading);
 
   return (
