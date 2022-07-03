@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Container,
   Heading,
   Spinner,
@@ -15,11 +16,9 @@ const Home: NextPage = () => {
 
   if (status === 'loading')
     return (
-      <Container h="calc(100vh - 60px)" maxW="container.xl" centerContent>
-        <VStack my="auto">
-          <Spinner />
-        </VStack>
-      </Container>
+      <Center h="calc(100vh - 60px)" color="pink.400">
+        <Spinner />
+      </Center>
     );
 
   return (

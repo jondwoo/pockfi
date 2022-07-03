@@ -5,6 +5,8 @@ import {
   ChevronRightIcon,
   CloseIcon,
   HamburgerIcon,
+  MoonIcon,
+  SunIcon,
 } from '@chakra-ui/icons';
 import {
   Box,
@@ -20,6 +22,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  useColorMode,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -232,6 +235,8 @@ const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { data: session } = useSession();
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box>
       <Flex
@@ -242,7 +247,7 @@ const Navbar = () => {
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle="solid"
-        borderColor={useColorModeValue('gray.200', 'gray.900')}
+        borderColor={useColorModeValue('gray.200', 'gray.700')}
         align="center"
       >
         <Flex
@@ -294,6 +299,12 @@ const Navbar = () => {
               Sign Out
             </Button>
           )}
+          <IconButton
+            bg={useColorModeValue('white', 'gray.800')}
+            onClick={toggleColorMode}
+            aria-label="Toggle Theme"
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          />
         </Stack>
       </Flex>
 
