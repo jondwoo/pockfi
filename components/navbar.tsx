@@ -23,7 +23,6 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import NextLink from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 
 interface NavItem {
@@ -278,22 +277,7 @@ export default function WithSubnavigation() {
           direction="row"
           spacing={6}
         >
-          {!session ? (
-            <NextLink href="/api/auth/signin" passHref>
-              <Button
-                as="a"
-                fontSize="sm"
-                fontWeight={600}
-                bg="pink.400"
-                color="white"
-                _hover={{
-                  bg: 'pink.300',
-                }}
-              >
-                Sign In
-              </Button>
-            </NextLink>
-          ) : (
+          {session && (
             <Button
               as="a"
               fontSize="sm"

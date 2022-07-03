@@ -1,10 +1,26 @@
-import { Container, Heading, Text, VStack } from '@chakra-ui/react';
+import {
+  Button,
+  Container,
+  Heading,
+  Spinner,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === 'loading')
+    return (
+      <Container h="100vh" maxW="container.xl" centerContent>
+        <VStack my="auto">
+          <Spinner />
+        </VStack>
+      </Container>
+    );
 
   return (
     <>
@@ -21,6 +37,19 @@ const Home: NextPage = () => {
               <Text fontSize="sm" pb={5}>
                 You don't need a password. It's safer that way.
               </Text>
+              <Button
+                onClick={() => signIn('google')}
+                as="a"
+                fontSize="sm"
+                fontWeight={600}
+                bg="pink.400"
+                color="white"
+                _hover={{
+                  bg: 'pink.300',
+                }}
+              >
+                Sign in with Google
+              </Button>
             </>
           )}
         </VStack>
