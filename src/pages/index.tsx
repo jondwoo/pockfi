@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   if (status === 'loading')
     return (
-      <Container h="100vh" maxW="container.xl" centerContent>
+      <Container h="calc(100vh - 60px)" maxW="container.xl" centerContent>
         <VStack my="auto">
           <Spinner />
         </VStack>
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         <meta name="description" content="App to split expenses" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container h="100vh" maxW="container.xl" centerContent>
+      <Container h="calc(100vh - 60px)" maxW="container.xl" centerContent>
         <VStack my="auto">
           {!session && (
             <>

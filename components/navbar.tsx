@@ -226,7 +226,7 @@ const MobileNav = () => {
   );
 };
 
-export default function WithSubnavigation() {
+const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { data: session } = useSession();
 
@@ -300,4 +300,6 @@ export default function WithSubnavigation() {
       </Collapse>
     </Box>
   );
-}
+};
+
+export default Navbar;
