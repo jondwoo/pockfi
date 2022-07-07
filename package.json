@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
+    "push-db:dev": "dotenv -e .env -- npx prisma db push",
+    "push-db:prod": "dotenv -e .env.prod -- npx prisma db push",
+    "migrate-db:dev": "dotenv -e .env -- npx prisma migrate dev",
+    "migrate-db:prod": "dotenv -e .env.prod -- npx prisma migrate dev",
     "bootstrap": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i",
     "postinstall": "prisma generate"
   },
@@ -22,6 +26,7 @@
     "@trpc/next": "^9.25.3",
     "@trpc/react": "^9.25.3",
     "@trpc/server": "^9.25.3",
+    "dotenv-cli": "^6.0.0",
     "framer-motion": "^6.3.16",
     "next": "12.2.0",
     "next-auth": "^4.8.0",
