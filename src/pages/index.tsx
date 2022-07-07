@@ -24,8 +24,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Money Splitter</title>
-        <meta name="description" content="App to split expenses" />
+        <title>PockFi</title>
+        <meta name="description" content="PockFi - Your Pocket Finance App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container h="calc(100vh - 60px)" maxW="container.xl" centerContent>

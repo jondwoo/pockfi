@@ -270,7 +270,7 @@ const Navbar = () => {
             fontFamily="heading"
             color={useColorModeValue('gray.800', 'white')}
           >
-            M.S
+            PockFi
           </Text>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
