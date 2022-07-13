@@ -1,23 +1,31 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/no-unused-prop-types */
 import {
+  ArrowBackIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   CloseIcon,
   HamburgerIcon,
   MoonIcon,
+  SettingsIcon,
   SunIcon,
 } from '@chakra-ui/icons';
 import {
+  Avatar,
   Box,
-  Button,
   Collapse,
   Container,
   Flex,
   Hide,
+  HStack,
   Icon,
   IconButton,
   Link,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -295,26 +303,40 @@ const Navbar = () => {
             spacing={6}
           >
             {session && (
-              <Button
-                as="a"
-                fontSize="sm"
-                fontWeight={600}
-                bg="pink.400"
-                color="white"
-                _hover={{
-                  bg: 'pink.300',
-                }}
-                onClick={() => signOut()}
-              >
-                Sign Out
-              </Button>
+              <Menu>
+                <MenuButton>
+                  <HStack>
+                    <Avatar size="sm" src="https://bit.ly/broken-link" />
+                    <ChevronDownIcon />
+                  </HStack>
+                </MenuButton>
+                <MenuList>
+                  <MenuItem icon={<SettingsIcon />}>Account Settings</MenuItem>
+                  <Hide above="md">
+                    <MenuItem
+                      closeOnSelect={false}
+                      icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                      onClick={toggleColorMode}
+                    >
+                      Toggle Theme
+                    </MenuItem>
+                  </Hide>
+                  <MenuDivider />
+                  <MenuItem icon={<ArrowBackIcon />} onClick={() => signOut()}>
+                    Sign Out
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             )}
-            <IconButton
-              bg={useColorModeValue('white', 'gray.800')}
-              onClick={toggleColorMode}
-              aria-label="Toggle Theme"
-              icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            />
+
+            <Hide below="md">
+              <IconButton
+                bg={useColorModeValue('white', 'gray.800')}
+                onClick={toggleColorMode}
+                aria-label="Toggle Theme"
+                icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              />
+            </Hide>
           </Stack>
         </Flex>
 
