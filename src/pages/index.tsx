@@ -28,6 +28,7 @@ const Home: NextPage = () => {
         <meta name="description" content="PockFi - Your Pocket Finance App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Container h="calc(100vh - 60px)" maxW="container.xl" centerContent>
         <VStack my="auto">
           {!session && (
@@ -51,6 +52,7 @@ const Home: NextPage = () => {
               </Button>
             </>
           )}
+          {session && <h1>test</h1>}
         </VStack>
       </Container>
     </>

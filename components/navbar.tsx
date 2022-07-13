@@ -12,7 +12,9 @@ import {
   Box,
   Button,
   Collapse,
+  Container,
   Flex,
+  Hide,
   Icon,
   IconButton,
   Link,
@@ -238,79 +240,88 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box>
-      <Flex
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
-        minH="60px"
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle="solid"
-        borderColor={useColorModeValue('gray.200', 'gray.700')}
-        align="center"
-      >
+    <Box
+      borderBottom={1}
+      borderStyle="solid"
+      borderColor={useColorModeValue('gray.200', 'gray.700')}
+    >
+      <Container maxW="8xl">
         <Flex
-          flex={{ base: 1, md: 'auto' }}
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}
+          bg={useColorModeValue('white', 'gray.800')}
+          color={useColorModeValue('gray.600', 'white')}
+          minH="60px"
+          py={{ base: 2 }}
+          px={{ base: 4 }}
+          align="center"
         >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant="ghost"
-            aria-label="Toggle Navigation"
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily="heading"
-            color={useColorModeValue('gray.800', 'white')}
+          <Flex
+            flex={{ base: 1, md: 'auto' }}
+            ml={{ base: -2 }}
+            display={{ base: 'flex', md: 'none' }}
           >
-            PockFi
-          </Text>
-
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav />
+            <IconButton
+              onClick={onToggle}
+              icon={
+                isOpen ? (
+                  <CloseIcon w={3} h={3} />
+                ) : (
+                  <HamburgerIcon w={5} h={5} />
+                )
+              }
+              variant="ghost"
+              aria-label="Toggle Navigation"
+            />
           </Flex>
+          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+            <Hide below="md">
+              <Text
+                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+                fontFamily="heading"
+                color={useColorModeValue('gray.800', 'white')}
+              >
+                PockFi
+              </Text>
+            </Hide>
+
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+              <DesktopNav />
+            </Flex>
+          </Flex>
+
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify="flex-end"
+            direction="row"
+            spacing={6}
+          >
+            {session && (
+              <Button
+                as="a"
+                fontSize="sm"
+                fontWeight={600}
+                bg="pink.400"
+                color="white"
+                _hover={{
+                  bg: 'pink.300',
+                }}
+                onClick={() => signOut()}
+              >
+                Sign Out
+              </Button>
+            )}
+            <IconButton
+              bg={useColorModeValue('white', 'gray.800')}
+              onClick={toggleColorMode}
+              aria-label="Toggle Theme"
+              icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            />
+          </Stack>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify="flex-end"
-          direction="row"
-          spacing={6}
-        >
-          {session && (
-            <Button
-              as="a"
-              fontSize="sm"
-              fontWeight={600}
-              bg="pink.400"
-              color="white"
-              _hover={{
-                bg: 'pink.300',
-              }}
-              onClick={() => signOut()}
-            >
-              Sign Out
-            </Button>
-          )}
-          <IconButton
-            bg={useColorModeValue('white', 'gray.800')}
-            onClick={toggleColorMode}
-            aria-label="Toggle Theme"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-          />
-        </Stack>
-      </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav />
+        </Collapse>
+      </Container>
     </Box>
   );
 };
